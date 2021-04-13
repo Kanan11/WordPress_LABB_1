@@ -1,6 +1,6 @@
 <?php
 
-if ( have_posts() ) {
+/* if ( have_posts() ) {
     while ( have_posts() ) {
  
         the_post(); ?>
@@ -10,7 +10,7 @@ if ( have_posts() ) {
         <?php the_content(); ?>
  
     <?php }
-}
+} */
 
 ?>
 
@@ -18,6 +18,10 @@ if ( have_posts() ) {
 get_header();
 
 ?>
+<?php 
+    $image = get_the_post_thumbnail_url();
+?>
+
 <body>
 
 
@@ -91,12 +95,34 @@ get_header();
 		</nav>
 
 		<main>
-			<section>
+
+		<section>
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="hero">
-								<img src="img/city.jpg" />
+							<?php
+									while(have_posts()) {
+										the_post();
+									}
+								?>
+								
+								<img src="<?=$image?>">
+ 								<div class="text">
+									<h1><?php the_title();?></h1>
+									<?php the_content(); ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- <section>
+				<div class="container">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="hero">
+								<img src="<?php echo get_template_directory_uri(). './img/city.jpg'?>" />
 								<div class="text">
 									<h1>Hej och välkommen!</h1>
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed sodales mauris. Aliquam felis est, efficitur vel fringilla quis, vehicula quis ex.</p>
@@ -105,7 +131,7 @@ get_header();
 						</div>
 					</div>
 				</div>
-			</section>
+			</section> -->
 		</main>
 
 	<?php
@@ -114,7 +140,6 @@ get_footer();
 
 	</div>
 
-	<script src="js/script.js"></script>
 
 </body>
 </html>
