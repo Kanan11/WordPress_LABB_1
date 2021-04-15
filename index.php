@@ -18,8 +18,8 @@
 get_header();
 
 ?>
-<?php 
-    $image = get_the_post_thumbnail_url();
+<?php
+$image = get_the_post_thumbnail_url();
 ?>
 
 <body>
@@ -68,25 +68,10 @@ get_header();
 					<div class="col-xs-12">
 						<ul class="menu">
 							<li class="current-menu-item">
-								<a href="index.html">Hem</a>
-							</li>
-							<li>
-								<a href="blogg.html">Blogg</a>
-							</li>
-							<li>
-								<a href="undersida.html">Undersida</a>
-							</li>
-							<li>
-								<a href="undersida2.html">Undersida 2</a>
-							</li>
-							<li>
-								<a href="undersida3.html">Undersida 3</a>
-							</li>
-							<li>
-								<a href="undersida4.html">Undersida 4</a>
-							</li>
-							<li>
-								<a href="kontakt.html">Kontakt</a>
+								<?php
+								wp_nav_menu(
+									['container' => 'nav']);
+								?>
 							</li>
 						</ul>
 					</div>
@@ -96,50 +81,38 @@ get_header();
 
 		<main>
 
-		<section>
+			<section>
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="hero">
 							<?php
-									while(have_posts()) {
-										the_post();
-									}
+								while (have_posts()) {
+									the_post();
+								}
 								?>
-								
-								<img src="<?=$image?>">
- 								<div class="text">
-									<h1><?php the_title();?></h1>
+								<div class="text">
+									<h1><?php the_title(); ?></h1>
 									<?php the_content(); ?>
 								</div>
+								
+								<img src="<?php echo get_template_directory_uri() . './img/city.jpg' ?>" />
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<!-- <section>
-				<div class="container">
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="hero">
-								<img src="<?php echo get_template_directory_uri(). './img/city.jpg'?>" />
-								<div class="text">
-									<h1>Hej och välkommen!</h1>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed sodales mauris. Aliquam felis est, efficitur vel fringilla quis, vehicula quis ex.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section> -->
+
 		</main>
 
-	<?php
-get_footer();
-?>
+		
+		<?php
+		get_footer();
+		?>
 
 	</div>
 
 
 </body>
+
 </html>
